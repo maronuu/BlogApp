@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
 
-from .models import Comment, Post
+from .models import Post
 from .serializers import PostSerializer
 
 

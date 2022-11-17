@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
 
 # postモデルを作成
 # https://docs.google.com/spreadsheets/d/1AJ53UH7X1NMX8gIoEsnmCxK3_xw0u3rF3S7HAWz5ly4/edit?usp=sharing
@@ -17,8 +17,8 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=250)
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     body = models.TextField()
     category = models.ForeignKey(
         Category, null=True, on_delete=models.SET_NULL

@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Category, Post, User
+from .models import Category, Post, Comment
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -9,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class LikedUsersSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
@@ -17,8 +18,18 @@ class LikedUsersSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
-    liked_users = LikedUsersSerializer(many=True)
+    author = UserSerializer()
+    liked_users = UserSerializer(many=True)
 
     class Meta:
         model = Post
+        fields = "__all__"
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    post = PostSerializer()
+
+    class Meta:
+        model = Comment
         fields = "__all__"

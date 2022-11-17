@@ -1,8 +1,6 @@
 from django.contrib import admin
-
+from django.contrib.auth.models import User
 from .models import Category, Comment, Post
-
-# Django管理サイトでPostモデルを管理できるようにする
 
 
 admin.site.register(Post)
